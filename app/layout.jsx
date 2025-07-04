@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
+
 import { Rubik } from "next/font/google";
 
 
