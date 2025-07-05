@@ -1,11 +1,25 @@
+import { notFound } from "next/navigation";
+
+export const dynamicParams = true; // Enable dynamic params for this page
+
+export async function generateStaticParams() {
+    const res = await fetch('http://localhost:4000/tickets');
+    const tickets = await res.json();
+    return tickets.map(ticket => ({
+        id: ticket.id
+    }));
+}
+
+
 async function getTicket(id) {
+    await new Promise(resolve => setTimeout(resolve, 3000));
     const res = await fetch('http://localhost:4000/tickets/' + id, {
         next: {
             revalidate: 60, // use 0  opt out of using the cache
         },
     });
     if (!res.ok) {
-        throw new Error('Failed to fetch data');
+        notFound();
     }
     return res.json();
 };

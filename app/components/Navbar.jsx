@@ -7,6 +7,7 @@ export default function Navbar() {
         <nav>
             {/* <h1>Help Desk App</h1> */}
             <Image
+                alt="Help Desk Logo"
                 src={Logo}
                 width={70}
                 quality={100}
